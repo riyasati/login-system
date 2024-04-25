@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+    <style>
+        /* Custom styles for this signup page */
+        body,
+        html {
+            font-family: 'Roboto', sans-serif;
+            background-color: #DED6B1; /* Earthy background color */
+            color: #423F3E; /* Earthy text color */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+        }
+        .user_card {
+            width: 400px; /* Increased width for better visibility */
+            margin: auto;
+            background: #F0E8CF; /* Lighter earthy color */
+            border-radius: 20px; /* Increased border radius for softer edges */
+            box-shadow: 0px 0px 15px 0px #333333;
+            padding: 40px; /* Increased padding for better spacing */
+            text-align: center;
+        }
+        .form_container {
+            margin-top: 30px; /* Increased top margin for better positioning */
+        }
+        #form-title {
+            color: #423F3E; /* Earthy text color */
+            font-weight: bold;
+            font-size: 28px; /* Larger font size for title */
+            margin-bottom: 30px; /* Increased bottom margin for better spacing */
+        }
+        .input-group-text {
+            background: #CDAE7E !important; /* Darker earthy color for input group */
+            color: white !important;
+            border: 0 !important;
+            border-radius: 0.25rem 0 0 0.25rem !important;
+        }
+        .signup_btn {
+            width: 100%;
+            background: #CDAE7E !important; /* Darker earthy color for button */
+            color: #423F3E !important; /* Earthy text color */
+            border-radius: 20px;
+            font-weight: bold;
+            border: none; /* Removed border for cleaner appearance */
+        }
+        .signup_btn:focus {
+            box-shadow: none !important;
+            outline: 0px !important;
+        }
+        .messages {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center; 
+        }
+        .messages li {
+            display: inline-block;
+            margin-right: 10px;
+            margin-bottom: 0px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .info {
+            background-color: #f44336;
+            color: white;
+        }
+        .noacc {
+            font-size: 16px;
+            margin-top: 30px; /* Increased top margin for better positioning */
+            color: #423F3E; /* Earthy text color */
+        }
+        .login_link {
+            color: #CDAE7E; /* Darker earthy color for hyperlink */
+            font-weight: bold;
+        }
+        .mt-4 {
+            margin-top: 30px; /* Increased top margin for better positioning */
+        }
+        .mt-4 .btn {
+            background-color: #423F3E; /* Earthy color for button */
+            color: #FFFFFF; /* White text color for button */
+            font-weight: bold;
+            border-radius: 20px;
+            padding: 10px 20px;
+            text-transform: uppercase;
+            font-size: 14px;
+            border: none; /* Removed border for cleaner appearance */
+        }
+    </style>
+</head>
+<body>
+    <div class="container h-100">
+        <div class="d-flex justify-content-center h-100">
+            <div class="user_card">
+                <div class="d-flex justify-content-center">
+                    <h3 id="form-title">Faculty Section</h3>
+                </div>
+                <div class="d-flex justify-content-center form_container">
+                    <form method="POST" action="">
+                        {% csrf_token %}
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" name="username" placeholder="Username..." class="form-control">
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                            </div>
+                            <input type="email" name="email" placeholder="Email..." class="form-control" >
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" name="password1" placeholder="Password..." class="form-control" >
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" name="password2" placeholder="Confirm Password..." class="form-control" >
+                        </div>
+                        <div class="d-flex justify-content-center mt-3 login_container">
+                            <input class="btn signup_btn" type="submit" value="Sign Up">
+                        </div>
+                    </form>
+                </div>
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="{{ message.tags }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <div class="noacc">
+                    Already have an account? <a href="{% url 'login' %}" class="login_link">Login</a>
+                </div>
+                <div class="mt-4">
+                    <a href="{% url 'signup' %}" class="btn">Student Section</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
